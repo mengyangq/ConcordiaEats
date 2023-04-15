@@ -1,0 +1,290 @@
+body {
+	background-color: #f0f0f0;
+}
+
+.btn-primary {
+	background-color: #912338;
+	color: #f0f0f0;
+	border: none;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+	background-color: #da3a16 !important;
+}
+
+.btn {
+	background-color: #912338;
+	color: #f0f0f0;
+	border: none;
+}
+
+.btn:hover, .btn:focus, .btn:active {
+	background-color: #da3a16;
+	color: #f0f0f0;
+}
+
+.navbar {
+	color: #f0f0f0;
+	background-color: #912338;
+}
+
+.navbar a, .nav-item a {
+	color: #f0f0f0;
+	font-weight: 500;
+	font-size: 17px;
+}
+
+.nav-item a:hover {
+	color: #e5a712 !important;
+	font-weight: bold;
+}
+
+[class*="container"] {
+	max-width: 1170px !important;
+}
+
+.concordia-txt-grey {
+	color: #f0f0f0;
+}
+
+.bg-product {
+	/* SET Height cho nó rồi bảo sao ko lỗi? */
+	/*height: 446px;*/
+	background: #d1d7f5;
+	/* overflow: hidden; */
+}
+
+#sliderproduct {
+	width: 100%;
+}
+
+#sliderproduct .carousel-inner {
+	overflow: visible;
+}
+
+#sliderproduct .col-sm-6.image {
+	background: #fff;
+	box-shadow: 0px 4px 8px 0px #959595;
+	position: relative;
+	/* Thêm cái của nợ này vào bảo sao nó ko tràn bờ đê */
+	/*top: -44px;
+                    padding: 100px;
+                    padding-top: 40px;*/
+}
+
+.item {
+	padding: 20px 20px 40px 20px;
+}
+
+.col-sm-6.image .item img.img-fluid {
+	/* Ai mướn thêm cái vào làm phá bố cục css của người ta.. mún trang web đẹp thì phải lựa cái ảnh đẹp đẹp vào rồi set cái độ rộng cho nó vừa là được rồi */
+	/*min-width: 100%;*/
+	width: 315px;
+}
+
+.col-sm-6.image h1 {
+	margin-bottom: 20px;
+}
+
+#sliderproduct .top a {
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 18px;
+	padding: 14px 22px;
+	background: #e0794f;
+	box-sizing: border-box !important;
+	text-align: center;
+	margin: 0px 2px;
+	display: block;
+	color: #fff;
+	width: 96px;
+}
+
+#sliderproduct .col-sm-4.mr-auto {
+	margin-top: 22px;
+}
+
+#sliderproduct p.cr1 {
+	font-size: 20px;
+	font-weight: 500;
+	margin-bottom: 30px;
+}
+
+#sliderproduct .col-sm-6:last-child {
+	padding-top: 27px;
+	padding-bottom: 27px;
+}
+
+#sliderproduct .details p.d-inline-block {
+	color: #e0794f;
+}
+
+#sliderproduct .details .fa {
+	color: #e0794f;
+	padding: 0px 3px;
+}
+
+#sliderproduct .rating {
+	margin: 23px 0px;
+}
+
+#sliderproduct .details .btn {
+	text-transform: uppercase;
+	font-weight: 400;
+	padding: 16px 22px;
+	background: #e0794f;
+	color: #fff;
+	border-radius: 81px;
+	font-size: 14px;
+	display: inline-block;
+}
+
+#sliderproduct .details h2 {
+	margin: 25px 0px 30px 0px;
+	font-size: 24px;
+	font-weight: 700;
+}
+
+#sliderproduct .details p.cr4 {
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 19px;
+	margin-bottom: 0px;
+}
+
+#sliderproduct .carousel-item {
+	transition: 0.4s;
+}
+
+#sliderproduct a.carousel-control-prev, #sliderproduct a.carousel-control-next
+	{
+	border-radius: 50%;
+	background-color: brown;
+	width: 46px;
+	height: 46px;
+	font-size: 30px;
+	text-align: center;
+	line-height: 40px;
+	opacity: 1;
+	top: 50%;
+	transform: translate(0, -50%);
+}
+
+.bg {
+	height: 570px;
+	overflow: hidden;
+}
+
+#sliderproduct ol.carousel-indicators {
+	display: none;
+}
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;300&display=swap')
+	;
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap')
+	;
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Arimo&display=swap');
+
+@import
+	url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300&display=swap')
+	;
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Signika:wght@300&display=swap')
+	;
+
+h1.heading {
+	color: #fff;
+	font-size: 1.15em;
+	font-weight: 900;
+	margin: 0 0 0.5em;
+	color: #505050;
+	text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4), 0px 8px 13px
+		rgba(0, 0, 0, 0.1), 0px 18px 23px rgba(0, 0, 0, 0.1);
+}
+
+@media ( min-width : 450px) {
+	h1.heading {
+		font-size: 3.55em;
+	}
+}
+
+@media ( min-width : 760px) {
+	h1.heading {
+		font-size: 3.05em;
+	}
+}
+
+@media ( min-width : 900px) {
+	h1.heading {
+		font-size: 3.25em;
+		margin: 0 0 0.3em;
+	}
+}
+
+.card {
+	display: block;
+	width: auto;
+	margin: 20px;
+	line-height: 1.42857143;
+	background-color: #fff;
+	border-radius: 2px;
+	min-width: 15rem;
+	min-height: 400px;
+	overflow: hidden;
+	transition: 0.5s ease;
+	animation: start_animation 0.5s ease 1;
+	box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px
+		2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px,
+		rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+
+.card:hover {
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px
+		6px;
+}
+
+.img-card {
+	width: 80%;
+	height: 225px;
+	min-width: 14rem;
+	border-top-left-radius: 2px;
+	border-top-right-radius: 2px;
+	display: flex;
+	overflow: hidden;
+}
+
+.img-card img {
+	margin-top: 15px;
+	width: fit-content;
+	height: 200px;
+	object-fit: cover;
+	transition: all .25s ease;
+	filter: drop-shadow(0.3rem 0.3rem 0.3rem rgba(0, 0, 0, 0.5));
+}
+
+.card-content {
+	padding: 15px;
+	text-align: left;
+}
+
+.card-title a {
+	color: #000;
+	text-decoration: none !important;
+}
+
+.card-read-more {
+	border-top: 1px solid #D4D4D4;
+}
+
+.card-read-more a {
+	text-decoration: none !important;
+	padding: 10px;
+	font-weight: 600;
+	text-transform: uppercase
+}
