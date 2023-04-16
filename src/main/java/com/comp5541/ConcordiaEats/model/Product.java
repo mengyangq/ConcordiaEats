@@ -21,6 +21,7 @@ public class Product {
     private Double weight;
     private String description;
     
+    
     public Integer getId() {
 		return id;
 	}
