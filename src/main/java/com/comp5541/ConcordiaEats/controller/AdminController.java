@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 public class AdminController {
 	
 	@GetMapping("/adminMain")
-	public String showCustomerMainPage(@ModelAttribute("username") String username, Model model) {
+	public String showAdminMainPage(@ModelAttribute("username") String username, Model model) {
 	    if (username != null && !username.isEmpty()) {
 	        return "adminMain";
 	    }
