@@ -14,8 +14,14 @@ public class ProductService {
         return productRepository.findByCategoryid(categoryId);
     }
     
-    public List<Product> searchProducts(String productName, Double minPrice, Double maxPrice) {
+    /*public List<Product> searchProducts(String productName, Double minPrice, Double maxPrice) {
         // Call the custom method in the ProductRepository to search for products based on the criteria
         return productRepository.searchProducts(productName, minPrice, maxPrice);
+    }*/
+    
+ // Simplified method to retrieve all products
+    public List<Product> searchProducts() {
+        return productRepository.searchProducts();
     }
+    
 }
