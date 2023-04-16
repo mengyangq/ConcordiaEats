@@ -38,7 +38,8 @@ public class LoginController {
             String role = user.getRole();
             if ("ROLE_ADMIN".equals(role)) {
                 // Redirect to admin.html if the user is an admin
-                return "redirect:/admin";
+            	model.addAttribute("username", username);
+                return "redirect:/adminMain";
             } else {
                 // Set the username as a session attribute
                 model.addAttribute("username", username);
@@ -52,7 +53,7 @@ public class LoginController {
         }
     }
     
-    @PostMapping("/adminlogin")
+    /*@PostMapping("/adminlogin")
     public String loginAdmin(@RequestParam("username") String username,
                             @RequestParam("password") String password,
                             Model model) {
@@ -74,7 +75,7 @@ public class LoginController {
             model.addAttribute("errorMessage", "Invalid username or password.");
             return "admin"; // Return to the login page
         }
-    }
+    }*/
 
 }
 
