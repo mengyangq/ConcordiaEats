@@ -22,6 +22,11 @@ public class LoginController {
     public String showLoginPage() {
         return "login";
     }
+    
+    @GetMapping("/admin")
+    public String showAdminLoginPage() {
+        return "admin";
+    }
 
     @PostMapping("/login")
     public String loginUser(@RequestParam("username") String username,
@@ -44,6 +49,30 @@ public class LoginController {
             // Handle the case when authentication fails (e.g., show an error message)
             model.addAttribute("errorMessage", "Invalid username or password.");
             return "login"; // Return to the login page
+        }
+    }
+    
+    @PostMapping("/adminlogin")
+    public String loginAdmin(@RequestParam("username") String username,
+                            @RequestParam("password") String password,
+                            Model model) {
+        User user = userService.findByUsernameAndPassword(username, password);
+        if (user != null) {
+            // Check the role of the authenticated user
+            String role = user.getRole();
+            if ("ROLE_USER".equals(role)) {
+                // Redirect to admin.html if the user is an admin
+                return "redirect:/login";
+            } else {
+                // Set the username as a session attribute
+                model.addAttribute("username", username);
+                // Redirect to adminMain.html if the user is a customer
+                return "redirect:/adminMain";
+            }
+        } else {
+            // Handle the case when authentication fails (e.g., show an error message)
+            model.addAttribute("errorMessage", "Invalid username or password.");
+            return "admin"; // Return to the login page
         }
     }
 
