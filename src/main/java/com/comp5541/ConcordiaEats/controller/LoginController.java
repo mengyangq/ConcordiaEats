@@ -35,13 +35,13 @@ public class LoginController {
                 // Redirect to admin.html if the user is an admin
             	model.addAttribute("username", username);
             	model.addAttribute("user_id", user.getId()); 
-                return "redirect:/adminMain";
+                return "redirect:/admin/main";
             } else {
                 // Set the username as a session attribute
                 model.addAttribute("username", username);
                 model.addAttribute("user_id", user.getId()); 
                 // Redirect to customerMain.html if the user is a customer
-                return "redirect:/customerMain";
+                return "redirect:/main";
             }
         } else {
             // Handle the case when authentication fails (e.g., show an error message)

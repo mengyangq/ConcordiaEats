@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @Controller
 @SessionAttributes({"username", "user_id"}) // Specify the session attribute names
 public class CustomerController {
-	@GetMapping("/customerMain")
+	@GetMapping("/main")
 	public String showCustomerMainPage(@ModelAttribute("username") String username, Model model) {
 	    if (username != null && !username.isEmpty()) {
 	        return "customerMain";
