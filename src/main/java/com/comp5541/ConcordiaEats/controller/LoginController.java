@@ -18,11 +18,10 @@ public class LoginController {
     private UserService userService;
     
     // Handler for displaying the login page
-    @GetMapping({"/", "/login"})
+    @GetMapping({"/", "/login", "/admin"})
     public String showLoginPage() {
         return "login";
     }
-    
 
     @PostMapping("/login")
     public String loginUser(@RequestParam("username") String username,
