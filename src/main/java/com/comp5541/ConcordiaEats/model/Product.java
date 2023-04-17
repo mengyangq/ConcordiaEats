@@ -20,6 +20,7 @@ public class Product {
     private Double price;
     private Double weight;
     private String description;
+    private Integer sold;
     
     
     public Integer getId() {
@@ -70,5 +71,10 @@ public class Product {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
+    public Integer getSold() {
+		return sold;
+	}
+	public void setSold(Integer sold) {
+		this.sold = sold;
+	}
 }

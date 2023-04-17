@@ -3,9 +3,12 @@ import com.comp5541.ConcordiaEats.model.Product;
 import com.comp5541.ConcordiaEats.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 @Service
+@Transactional
 public class ProductService {
     @Autowired
     private ProductRepository productRepository;
@@ -19,9 +22,13 @@ public class ProductService {
         return productRepository.searchProducts(productName, minPrice, maxPrice);
     }*/
     
- // Simplified method to retrieve all products
+    // Simplified method to retrieve all products
     public List<Product> searchProducts() {
         return productRepository.searchProducts();
+    }
+    
+    public void deleteProduct(Integer id) {
+    	productRepository.deleteProduct(id);
     }
     
 }
