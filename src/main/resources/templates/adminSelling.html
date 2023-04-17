@@ -23,17 +23,18 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/styles.css">
 
-	<title>Admin Selling</title>
+<title>Admin Selling</title>
 </head>
 
 <body>
 	<nav class="navbar navbar-expand-md navbar-dark sticky-top">
 		<div class="container-fluid">
-            <div class="d-flex">
-                <img th:src="@{/images/ConcordiaEats-Logo-BW.svg}" src="/images/ConcordiaEats-Logo-BW.svg" width="auto" height="40"/>
+			<div class="d-flex">
+				<img th:src="@{/images/ConcordiaEats-Logo-BW.svg}"
+					src="/images/ConcordiaEats-Logo-BW.svg" width="auto" height="40" />
 				<h4 class="my-auto">Admin Dashboard</h4>
-			</div>			
-			
+			</div>
+
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -41,14 +42,19 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 
-			<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+			<div class="collapse navbar-collapse justify-content-end"
+				id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto"></ul>
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link" href="/adminMain">Home</a></li>
-					<li class="nav-item"><a class="nav-link" href="/admin/categories">Categories</a></li>
-					<li class="nav-item"><a class="nav-link" href="/admin/products">Products</a></li>
-					<li class="nav-item"><a class="nav-link" href="/admin/customers">Customers</a></li>
-					<li class="nav-item"><a class="nav-link" href="/admin/discounts">Discount</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/admin/categories">Categories</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/admin/products">Products</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/admin/customers">Customers</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="/admin/discounts">Discount</a></li>
 					<li class="nav-item active"><a class="nav-link" href="#">Selling</a></li>
 					<li class="nav-item"><a class="nav-link" href="/admin">Logout</a></li>
 				</ul>
@@ -56,20 +62,21 @@
 		</div>
 	</nav>
 	<br>
-	
+
+
 	<div class="container-fluid">
 		<table id="searchTable" class="table">
 			<thead>
 				<tr>
-					<th scope="col">#</th>
-					<th scope="col">Name</th>
-					<th scope="col">Category</th>
-					<th scope="col">Preview</th>
-					<th scope="col">Quantity</th>
-					<th scope="col">Price</th>
-					<th scope="col">On_Sale</th>
-					<th scope="col">Weight(ml/g)</th>
-					<th scope="col">Description</th>
+					<th class="no-sort" scope="col">#</th>
+					<th class="no-sort" scope="col">Name</th>
+					<th class="no-sort" scope="col">Category</th>
+					<th class="no-sort" scope="col">Preview</th>
+					<th class="no-sort" scope="col">Quantity</th>
+					<th class="no-sort" scope="col">Price</th>
+					<th class="no-sort" scope="col">On_Sale</th>
+					<th class="no-sort" scope="col">Weight(ml/g)</th>
+					<th class="no-sort" scope="col">Description</th>
 					<th scope="col">Sold</th>
 				</tr>
 			</thead>
@@ -79,17 +86,40 @@
 					<td th:text="${product.id}"></td>
 					<td th:text="${product.name}"></td>
 					<td th:text="${categoryNames[product.categoryid]}"></td>
-					<td><img th:src="${product.image}" height="100px" width="100px"></td>
+					<td><img th:src="${product.image}" height="100px"
+						width="100px"></td>
 					<td th:text="${product.quantity}"></td>
 					<td th:text="'$' + ${product.price}"></td>
-					<td th:text="${product.onsale > 0 ? '$' + product.discount * product.price / 100 + ' (' + product.discount + '%)' : 'No'}"></td>
+					<td
+						th:text="${product.onsale > 0 ? '$' + product.discount * product.price / 100 + ' (' + product.discount + '%)' : 'No'}"></td>
 					<td th:text="${product.weight}"></td>
 					<td th:text="${product.description}"></td>
 					<td th:text="${product.sold}"></td>
 				</tr>
 			</tbody>
 		</table>
-	</div>	
-	
+	</div>
+
+	<script>
+		$(document).ready(function() {
+			// Initialize the DataTable with specific column options
+			$('#searchTable').DataTable({
+				// Disable searching to match your requirements
+				searching : false,
+				// Enable overall ordering
+				ordering : true,
+				// Specify options for specific columns
+				columnDefs : [ {
+					orderable : false,
+					targets : "no-sort"
+				} ],
+				// Specify the initial sorting column and order
+				// Sort by the 10th column (index 9) in descending order
+				order : [ [ 9, 'desc' ] ]
+			});
+
+		});
+	</script>
+
 </body>
 </html>
