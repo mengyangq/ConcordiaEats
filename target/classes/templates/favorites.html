@@ -22,7 +22,7 @@
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/styles.css">
-<title>Search</title>
+<title>Favorites</title>
 </head>
 
 <body>
@@ -46,10 +46,10 @@
 					<li class="nav-item"><a class="nav-link" href="/customerMain">Home</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="/customerCategories">Categories</a></li>
-					<li class="nav-item"><a class="nav-link active" href="/search">Search</a>
+					<li class="nav-item"><a class="nav-link" href="/search">Search</a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="/favorites">Favorites</a>
-					</li>
+					<li class="nav-item"><a class="nav-link active"
+						href="/favorites">Favorites</a></li>
 					<li class="nav-item"><a class="nav-link" href="/cart">Cart</a>
 					</li>
 					<li class="nav-item"><a class="nav-link"
@@ -64,19 +64,8 @@
 	<br>
 	<br>
 
-	<!-- Custom Min and Max Price Input Fields -->
-	<div
-		class="container-fluid d-flex justify-content-end align-items-center mb-3">
-		<label for="minPrice" class="mr-1">Min Price:</label> <input
-			type="number" id="minPrice" class="form-control mr-3"
-			placeholder="Min Price" style="width: 100px;"> <label
-			for="maxPrice" class="mr-1">Max Price:</label> <input type="number"
-			id="maxPrice" class="form-control mr-0" placeholder="Max Price"
-			style="width: 100px;">
-	</div>
-
 	<div class="container-fluid">
-		<table id="searchTable" class="table">
+		<table id="favoritesTable" class="table">
 			<thead>
 				<tr>
 					<th scope="col">Serial No.</th>
@@ -91,26 +80,27 @@
 				</tr>
 			</thead>
 			<tbody>
-				<!-- Use Thymeleaf to iterate over the mealProducts list -->
-				<tr th:each="search : ${searchResults}">
-					<td th:text="${search.id}"></td>
-					<td th:text="${search.name}"></td>
-					<td th:text="${categoryNames[search.categoryid]}"></td>
-					<td><img th:src="${search.image}" height="100px" width="100px"></td>
-					<td th:text="${search.quantity}"></td>
-					<td th:text="${search.price}"></td>
-					<td th:text="${search.weight}"></td>
-					<td th:text="${search.description}"></td>
+				<!-- Use Thymeleaf to iterate over the favoriteProducts list -->
+				<tr th:each="favorite : ${favoriteProducts}">
+					<td th:text="${favorite.id}"></td>
+					<td th:text="${favorite.name}"></td>
+					<td th:text="${categoryNames[favorite.categoryid]}"></td>
+					<td><img th:src="${favorite.image}" height="100px"
+						width="100px"></td>
+					<td th:text="${favorite.quantity}"></td>
+					<td th:text="${favorite.price}"></td>
+					<td th:text="${favorite.weight}"></td>
+					<td th:text="${favorite.description}"></td>
 					<td>
 						<div class="d-flex">
-							<form th:action="@{/addToFavorites}" method="post"
-								onsubmit="saveScrollPosition()">
-								<input type="hidden" name="product_id" th:value="${search.id}">
-								<input type="submit" value="Like😀" class="btn btn-info btn-sm"
-									th:disabled="${favoritedProductIds.contains(search.id)}">
+							<form th:action="@{/removeFromFavorites}" method="post">
+								<input type="hidden" name="product_id" th:value="${favorite.id}">
+								<input type="submit" value="Remove😞"
+									class="btn btn-gray btn-sm">
 							</form>
+							<!-- Keep the Buy button as is, if needed -->
 							<form action="/cart" method="get" class="ml-2">
-								<input type="hidden" name="id" th:value="${search.id}">
+								<input type="hidden" name="id" th:value="${favorite.id}">
 								<input type="submit" value="Buy" class="btn btn-info btn-sm">
 							</form>
 						</div>
@@ -120,46 +110,11 @@
 		</table>
 	</div>
 
-	<!-- Scripts -->
 	<script>
-		function saveScrollPosition() {
-			sessionStorage.setItem('scrollPosition', window.pageYOffset);
-		}
-
-		$(document).ready(
-				function() {
-
-					var scrollPosition = sessionStorage
-							.getItem('scrollPosition');
-					if (scrollPosition) {
-						window.scrollTo(0, scrollPosition);
-						sessionStorage.removeItem('scrollPosition'); // Clear the saved scroll position
-					}
-
-					var table = $('#searchTable').DataTable({
-						pageLength : 50
-					// Set the default number of entries to 50
-					});
-
-					// Custom search function for Price column
-					$.fn.dataTable.ext.search.push(function(settings,
-							searchData, index, rowData, counter) {
-						var minPrice = parseFloat($('#minPrice').val())
-								|| -Infinity;
-						var maxPrice = parseFloat($('#maxPrice').val())
-								|| Infinity;
-						var price = parseFloat(searchData[5]) || 0; // 5th column (Price)
-						return price >= minPrice && price <= maxPrice;
-					});
-
-					// Redraw the table when the Min/Max Price inputs change
-					$('#minPrice, #maxPrice').on('keyup change', function() {
-						table.draw();
-					});
-				});
+		$(document).ready(function() {
+			// Initialize the table as a DataTable
+			$('#favoritesTable').DataTable();
+		});
 	</script>
-
 </body>
 </html>
-
-

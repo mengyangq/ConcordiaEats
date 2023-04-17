@@ -23,6 +23,25 @@ body {
 	color: #f0f0f0;
 }
 
+.btn:disabled, .btn-primary:disabled {
+	background-color: #912338;
+	color: #f0f0f0;
+	cursor: not-allowed; /* Change the cursor to indicate that the button is not clickable */
+}
+
+.btn:disabled:hover, .btn-primary:disabled:hover,
+.btn:disabled:focus, .btn-primary:disabled:focus,
+.btn:disabled:active, .btn-primary:disabled:active {
+	background-color: #912338; /* Keep the same background color */
+	color: #f0f0f0; /* Keep the same text color */
+}
+
+.btn-gray {
+    background-color: #808080; /* You can choose your preferred shade of gray */
+    color: #ffffff; /* Text color */
+}
+
+
 .navbar {
 	color: #f0f0f0;
 	background-color: #912338;
@@ -76,8 +95,6 @@ body {
 }
 
 .col-sm-6.image .item img.img-fluid {
-	/* Ai mướn thêm cái vào làm phá bố cục css của người ta.. mún trang web đẹp thì phải lựa cái ảnh đẹp đẹp vào rồi set cái độ rộng cho nó vừa là được rồi */
-	/*min-width: 100%;*/
 	width: 315px;
 }
 

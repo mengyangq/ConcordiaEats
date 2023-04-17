@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 //import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@SessionAttributes("username")
+@SessionAttributes({"username","user_id"})
 public class LoginController {
     @Autowired
     private UserService userService;
@@ -35,10 +35,12 @@ public class LoginController {
             if ("ROLE_ADMIN".equals(role)) {
                 // Redirect to admin.html if the user is an admin
             	model.addAttribute("username", username);
+            	model.addAttribute("user_id", user.getId()); 
                 return "redirect:/adminMain";
             } else {
                 // Set the username as a session attribute
                 model.addAttribute("username", username);
+                model.addAttribute("user_id", user.getId()); 
                 // Redirect to customerMain.html if the user is a customer
                 return "redirect:/customerMain";
             }

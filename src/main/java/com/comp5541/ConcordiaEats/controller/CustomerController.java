@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
-@SessionAttributes("username") // Specify the session attribute names
+@SessionAttributes({"username", "user_id"}) // Specify the session attribute names
 public class CustomerController {
 	@GetMapping("/customerMain")
 	public String showCustomerMainPage(@ModelAttribute("username") String username, Model model) {

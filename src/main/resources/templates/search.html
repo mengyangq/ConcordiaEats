@@ -54,7 +54,7 @@
 					</li>
 					<li class="nav-item"><a class="nav-link"
 						href="/profileDisplay">Profile</a></li>
-					<li class="nav-item"><a class="nav-link" href="/logout">Logout</a>
+					<li class="nav-item"><a class="nav-link" href="/login">Logout</a>
 					</li>
 				</ul>
 			</div>
@@ -87,7 +87,7 @@
 					<th scope="col">Price</th>
 					<th scope="col">Weight (in ml/g)</th>
 					<th scope="col">Description</th>
-					<th scope="col">Buy</th>
+					<th scope="col">Action</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -102,10 +102,18 @@
 					<td th:text="${search.weight}"></td>
 					<td th:text="${search.description}"></td>
 					<td>
-						<form action="/buy" method="get">
-							<input type="hidden" name="id" th:value="${search.id}"> <input
-								type="submit" value="Buy" class="btn btn-info btn-lg">
-						</form>
+						<div class="d-flex">
+							<form th:action="@{/addToFavorites}" method="post"
+								onsubmit="saveScrollPosition()">
+								<input type="hidden" name="product_id" th:value="${search.id}">
+								<input type="submit" value="Like😀" class="btn btn-info btn-sm"
+									th:disabled="${favoritedProductIds.contains(search.id)}">
+							</form>
+							<form action="/cart" method="get" class="ml-2">
+								<input type="hidden" name="id" th:value="${search.id}">
+								<input type="submit" value="Buy" class="btn btn-info btn-sm">
+							</form>
+						</div>
 					</td>
 				</tr>
 			</tbody>
@@ -114,9 +122,24 @@
 
 	<!-- Scripts -->
 	<script>
+		function saveScrollPosition() {
+			sessionStorage.setItem('scrollPosition', window.pageYOffset);
+		}
+
 		$(document).ready(
 				function() {
-					var table = $('#searchTable').DataTable();
+
+					var scrollPosition = sessionStorage
+							.getItem('scrollPosition');
+					if (scrollPosition) {
+						window.scrollTo(0, scrollPosition);
+						sessionStorage.removeItem('scrollPosition'); // Clear the saved scroll position
+					}
+
+					var table = $('#searchTable').DataTable({
+						pageLength : 50
+					// Set the default number of entries to 50
+					});
 
 					// Custom search function for Price column
 					$.fn.dataTable.ext.search.push(function(settings,
