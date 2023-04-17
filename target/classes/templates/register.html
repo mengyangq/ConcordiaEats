@@ -29,15 +29,26 @@ body {
 			th:src="@{/images/ConcordiaEats-Logo.svg}"
 			src="/images/ConcordiaEats-Logo.svg" height="180">
 		<h2 style="color: #912338;">
-			ConcordiaEats <br> User Login
+			ConcordiaEats <br> User Registration
 		</h2>
+		<br>
 		<div th:if="${errorMessage}">
 			<p th:text="${errorMessage}" style="color: red;"></p>
 		</div>
-		<form action="/login" method="post">
+		<!-- Success message element (hidden by default) -->
+		<div id="successMessage" style="display: none;"
+			class="alert alert-success">User registered successfully. You
+			will be redirected to the login page in 5 seconds.</div>
+
+		<form action="/register" method="post">
 			<div class="form-group">
 				<label for="username">Username</label> <input type="text"
 					name="username" id="username" placeholder="Username*" required
+					class="form-control form-control-lg">
+			</div>
+			<div class="form-group">
+				<label for="email">Email</label> <input type="text" name="email"
+					id="email" placeholder="Email*" required
 					class="form-control form-control-lg">
 			</div>
 			<div class="form-group">
@@ -45,16 +56,52 @@ body {
 					class="form-control form-control-lg" placeholder="Password*"
 					required name="password" id="password">
 			</div>
-			<input type="submit" value="Login" class="btn btn-primary btn-block">
+			<div class="form-group">
+				<label for="confirmPassword">Confirm Password</label> <input
+					type="password" class="form-control form-control-lg"
+					placeholder="Confirm Password*" required name="confirmPassword"
+					id="confirmPassword">
+			</div>
+			<div class="form-group">
+				<label for="role">Role</label> <select
+					class="form-control form-control-lg" name="role" id="role" required>
+					<option value="ROLE_USER">Customer</option>
+					<option value="ROLE_ADMIN">Admin</option>
+				</select>
+			</div>
+			<input type="submit" value="Register"
+				class="btn btn-primary btn-block">
 		</form>
 		<br>
 		<div>
-			<span>Don't have an account? <a class="linkControl"
-				href="/register">Register here</a></span>
-
-
+			<span>Already have an account? <a class="linkControl"
+				href="/login">Login here</a></span>
 		</div>
 	</div>
+
+	
+
+
+	<!-- Scripts -->
+	<script>
+		function showSuccessMessageAndRedirect() {
+			// Show the success message
+			document.getElementById('successMessage').style.display = 'block';
+
+			// After 5 seconds (5000 milliseconds), redirect to the login page
+			setTimeout(function() {
+				window.location.href = '/login';
+			}, 5000);
+		}
+	</script>
+
+	<!-- Check if registration was successful -->
+	<th:block th:if="${isSuccess}">
+		<script>
+			showSuccessMessageAndRedirect();
+		</script>
+	</th:block>
+
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script

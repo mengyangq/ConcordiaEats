@@ -25,7 +25,7 @@ public class User {
     private String role;
 
     @Column(name = "enabled")
-    private Boolean enabled;
+    private Integer enabled;
 
     @Column(name = "email")
     private String email;
@@ -55,10 +55,10 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	public Boolean getEnabled() {
+	public Integer getEnabled() {
 		return enabled;
 	}
-	public void setEnabled(Boolean enabled) {
+	public void setEnabled(Integer enabled) {
 		this.enabled = enabled;
 	}
 	public String getEmail() {
