@@ -30,5 +30,13 @@ public class ProductService {
     public void deleteProduct(Integer id) {
     	productRepository.deleteProduct(id);
     }
+
+	public void resetDiscount(Integer id) {
+		productRepository.resetDiscount(id);
+	}
+
+	public void updateDiscount(Integer discount, Integer id) {
+		productRepository.updateDiscount(discount, id);	
+	}
     
 }

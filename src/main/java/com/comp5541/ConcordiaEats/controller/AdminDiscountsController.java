@@ -15,13 +15,12 @@ import com.comp5541.ConcordiaEats.model.Product;
 import com.comp5541.ConcordiaEats.service.ProductService;
 
 @Controller
-public class AdminProductsController {
-	
+public class AdminDiscountsController {
 	@Autowired
 	private ProductService productService;
 	
-	@GetMapping("/admin/products")
-    public String showAdminProductsPage(Model model) {
+	@GetMapping("/admin/discounts")
+    public String showAdminDiscountPage(Model model) {
 		Map<Integer, String> categoryNames = new HashMap<>();
 		categoryNames.put(1, "Meals");
 		categoryNames.put(2, "Snacks");
@@ -34,20 +33,6 @@ public class AdminProductsController {
 		List<Product> products = productService.searchProducts();
 		model.addAttribute("products", products);
 		
-        return "adminProducts";
-    }
-	
-	@GetMapping("/admin/insert")
-    public String showInsertProductsPage(Model model) {
-		
-        return "adminProductsInsert";
-    }
-	
-	@GetMapping("/admin/update")
-    public String showUpdateProductsPage(@RequestParam("id") Integer id, Model model) {
-		
-		model.addAttribute("updateId", id);
-		
-        return "adminProductsUpdate";
+        return "adminDiscounts";
     }
 }

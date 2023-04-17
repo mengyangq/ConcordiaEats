@@ -9,31 +9,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.comp5541.ConcordiaEats.service.ProductService;
-import java.util.List;
 
 @Controller
 @SessionAttributes("username")
-public class ManageProductsController {
+public class ManageDiscountController {
 	@Autowired
 	private ProductService productService;
 	
-	@PostMapping("/admin/deleteProducts")
-	public String deleteProducts(@RequestParam("id") Integer id) {
-		// System.out.println("id = " + id);
-		productService.deleteProduct(id);
-	    return "redirect:/admin/products";
-	}
-
-	/*@PostMapping("/admin/updateProducts")
-	public String updateProducts(@RequestParam("name") String name,@RequestParam("id") Integer id) {
-
-	    return "redirect:/admin/products";
+	@PostMapping("/admin/resetDiscount")
+	public String resetDiscount(@RequestParam("id") Integer id) {
+		
+		productService.resetDiscount(id);
+	    return "redirect:/admin/discounts";
 	}
 	
-	@PostMapping("/admin/insertProducts")
-	public String insertProducts() {
+	@PostMapping("/admin/applyDiscount")
+	public String updateDiscount(@RequestParam("discount") Integer discount, @RequestParam("id") Integer id) {
 		
-		
-		return "redirect:/admin/products";
-	}*/
+		productService.updateDiscount(discount, id);
+	    return "redirect:/admin/discounts";
+	}
 }
