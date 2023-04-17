@@ -70,7 +70,7 @@ public class Product {
 	public Integer getDiscount() {
 		return discount;
 	}
-	public void setDprice(Integer discount) {
+	public void setDiscount(Integer discount) {
 		this.discount = discount;
 	}
 	public Integer getWeight() {

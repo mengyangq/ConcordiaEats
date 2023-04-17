@@ -66,7 +66,7 @@ public class ProductTest {
     @Test
     public void testDiscount() {
         // Set a discount and check if the getter returns the correct value
-        product.setDprice(10);
+        product.setDiscount(10);
         assertEquals(10, product.getDiscount());
     }
 
