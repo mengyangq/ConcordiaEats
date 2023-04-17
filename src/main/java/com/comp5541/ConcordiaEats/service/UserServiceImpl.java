@@ -2,15 +2,25 @@ package com.comp5541.ConcordiaEats.service;
 
 import com.comp5541.ConcordiaEats.model.User;
 import com.comp5541.ConcordiaEats.repository.UserRepository;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
 
+    @Override
+    public List<User> searchUsers() {
+        return userRepository.searchUsers();
+    }
+    
     @Override
     public User findByUsernameAndPassword(String username, String password) {
         return userRepository.findByUsernameAndPassword(username, password);
@@ -36,5 +46,10 @@ public class UserServiceImpl implements UserService {
         newUser.setEmail(email);
         userRepository.save(newUser);
         return "User registered successfully.";
+    }
+    
+    @Override
+	public void deleteUsers(String username) {
+    	userRepository.deleteUsers(username);
     }
 }

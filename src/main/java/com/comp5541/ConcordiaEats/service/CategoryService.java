@@ -20,11 +20,7 @@ public class CategoryService {
     }
     
     public void deleteCategory(Integer categoryid) {
-    	try {
-            categoryRepository.deleteCategory(categoryid);
-        } catch (Exception e) {
-            System.err.println("Error deleting category: " + e.getMessage());
-        }
+        categoryRepository.deleteCategory(categoryid);
     }
     
     public void updateCategory(String name, Integer categoryid) {
