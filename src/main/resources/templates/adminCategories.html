@@ -58,7 +58,7 @@
 			aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
-					<form action="/admin/addCategories" method="get">
+					<form action="/admin/insertCategories" method="post">
 						<div class="modal-header">
 							<h5 class="modal-title" id="exampleModalLongTitle">Add New Category</h5>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -66,12 +66,12 @@
 							</button>
 						</div>
 						<div class="modal-body  text-center">
-							<input type="text" name="categoryname" class="form-control" id="name"
-								required="required" placeholder="Category name">
+							<input type="text" name="categoryname" class="form-control" id="categoryname"
+								required="required" placeholder="Write a New Category Name">
 						</div>
 						<div class="modal-footer">
+							<button type="submit" class="btn btn-primary">Apply</button>
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-							<button type="submit" class="btn btn-primary">Save Changes</button>
 						</div>
 					</form>
 				</div>
@@ -90,25 +90,28 @@
 					</tr>
 				</thead>
 				<tbody>
-		            <!-- Use Thymeleaf to iterate over the mealProducts list -->
-		            <tr th:each="category : ${categories}">
-		                <td th:text="${category.categoryid}"></td>
-		                <td th:text="${category.name}"></td>
-		                
-						<td>
-							<form action="/admin/updateCategories" method="get">
-								<input type="hidden" name="id" th:value="${category.categoryid}">
-								<input type="submit" value="Update" class="btn btn-info btn-lg">
-							</form>
-						</td>                
-		                <td>
-		                    <form action="/admin/deleteCategories" method="get">
-		                        <input type="hidden" name="id" th:value="${category.categoryid}">
-		                        <input type="submit" value="Delete" class="btn btn-info btn-lg">
-		                    </form>
-		                </td>
-		            </tr>					
-	        	</tbody>
+				    <!-- Use Thymeleaf to iterate over the mealProducts list -->
+				    <tr th:each="category : ${categories}">
+				        <td th:text="${category.categoryid}"></td>
+				        <td th:text="${category.name}"></td>
+				          			                                       
+				        <td>
+				            <form action="/admin/updateCategories" method="post" class="form-inline">
+				                <input type="hidden" name="categoryid" th:value="${category.categoryid}">
+				                <input type="text" name="categoryname" class="form-control mr-2" required="required" placeholder="New Category name">
+				                <input type="submit" value="Update" class="btn btn-info btn-lg">
+				            </form>
+				        </td>
+						
+				        <td>
+				            <form action="/admin/deleteCategories" method="post">
+				                <input type="hidden" name="categoryid" th:value="${category.categoryid}">
+				                
+				                <input type="submit" value="Delete" class="btn btn-info btn-lg">
+				            </form>
+				        </td>						                        
+				    </tr>                   
+				</tbody>
 			</table>
 		</div>	
 	</div>

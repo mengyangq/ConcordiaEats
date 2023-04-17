@@ -4,31 +4,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import com.comp5541.ConcordiaEats.service.ProductService;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+
+import com.comp5541.ConcordiaEats.service.CategoryService;
 import java.util.List;
-import com.comp5541.ConcordiaEats.model.Product;
 
 @Controller
+@SessionAttributes("username")
 public class ManageCategoriesController {
 	
 	@Autowired
-	private ProductService productService;
-
-	@PostMapping("/admin/addCategories")
-	public String addCategories(Model model) {
-		
-		return;
-	}
-	
-	@PostMapping("/admin/updateCategories")
-	public String updateCategories(Model model) {
-		
-		return;
-	}
+	private CategoryService categoryService;
 	
 	@PostMapping("/admin/deleteCategories")
-	public String deleteCategories(Model model) {
-		
-		return;
+	public String deleteCategories(@RequestParam("categoryid") Integer categoryid) {
+		// System.out.println("categoryid = " + categoryid);
+	    categoryService.deleteCategory(categoryid);
+	    return "redirect:/admin/categories";
+	}
+
+	@PostMapping("/admin/updateCategories")
+	public String updateCategories(@RequestParam("categoryname") String categoryname,@RequestParam("categoryid") Integer categoryid) {
+		// System.out.println("categoryid = " + categoryid);
+		// System.out.println("categoryname = " + categoryname);
+	    categoryService.updateCategory(categoryname, categoryid);
+	    return "redirect:/admin/categories";
 	}
 }
