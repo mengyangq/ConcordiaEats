@@ -32,4 +32,12 @@ public class ManageCategoriesController {
 	    categoryService.updateCategory(categoryname, categoryid);
 	    return "redirect:/admin/categories";
 	}
+	
+	@PostMapping("/admin/insertCategories")
+	public String insertCategories(@RequestParam("categoryname") String categoryname) {
+		
+		categoryService.insertCategory(categoryname);
+		
+		return "redirect:/admin/categories";
+	}
 }

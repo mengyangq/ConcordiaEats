@@ -30,4 +30,8 @@ public class CategoryService {
     public void updateCategory(String name, Integer categoryid) {
         categoryRepository.updateCategory(name, categoryid);
     };
+    
+    public void insertCategory(String name) {
+        categoryRepository.insertCategory(name);
+    };
 }

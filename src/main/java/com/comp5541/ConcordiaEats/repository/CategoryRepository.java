@@ -28,4 +28,9 @@ public interface CategoryRepository extends JpaRepository<Category, Integer> {
     @Modifying
     @Query("UPDATE Category SET name = :name WHERE categoryid = :categoryid")
     void updateCategory(@Param("name")String name, @Param("categoryid")Integer categoryid);
+    
+    @Modifying
+    @Query(value = "INSERT INTO categories (name) VALUES (:name)", nativeQuery = true)
+    void insertCategory(@Param("name") String name);
+    
 }
