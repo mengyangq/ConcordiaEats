@@ -37,7 +37,7 @@ public class LoginControllerTest {
                 .param("username", "admin")
                 .param("password", "admin123"))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/admin"));
+                .andExpect(redirectedUrl("/admin/main"));
     }
 
     @Test
@@ -53,7 +53,7 @@ public class LoginControllerTest {
                 .param("username", "customer")
                 .param("password", "cust123"))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/customerMain"));
+                .andExpect(redirectedUrl("/main"));
     }
 
     @Test
