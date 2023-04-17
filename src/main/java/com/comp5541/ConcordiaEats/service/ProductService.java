@@ -4,6 +4,7 @@ import com.comp5541.ConcordiaEats.repository.ProductRepository;
 import com.comp5541.ConcordiaEats.model.Favorite;
 import com.comp5541.ConcordiaEats.repository.FavoriteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,6 +33,10 @@ public class ProductService {
         return productRepository.searchProducts();
     }
     
+    public Product searchProducts(Integer id) {
+    	return productRepository.searchProducts(id);
+    }
+    
 
     public void addProductToFavorites(Integer userId, Integer productId) {
         // Create a new Favorite instance
@@ -48,6 +53,18 @@ public class ProductService {
     public void deleteProduct(Integer id) {
     	productRepository.deleteProduct(id);
     }
+    
+    public void insertProduct(String name, Integer categoryid, Integer quantity, 
+    		Double price, Integer weight, String description, String image) {
+    	productRepository.insertProduct(name, categoryid, quantity, 
+        		price, weight, description, image);
+    }
+    
+    public void updateProduct(Integer id, String name, Integer categoryid, Integer quantity, 
+    		Double price, Integer weight, String description, String image) {
+    	productRepository.updateProduct(id, name, categoryid, quantity, 
+        		price, weight, description, image);
+    }
 
 	public void resetDiscount(Integer id) {
 		productRepository.resetDiscount(id);
@@ -58,7 +75,6 @@ public class ProductService {
 	}
 
 	public List<Product> searchSelling() {
-		// TODO Auto-generated method stub
 		return productRepository.searchSelling();
 	}
     

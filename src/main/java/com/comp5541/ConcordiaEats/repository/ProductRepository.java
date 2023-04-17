@@ -27,22 +27,42 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
             @Param("maxPrice") Double maxPrice
     );*/
     
- // Simplified query to retrieve all products
+    // Simplified query to retrieve all products
     @Query("SELECT p FROM Product p")
     List<Product> searchProducts();
+    
+    @Query("SELECT p FROM Product p where id = :id")
+    Product searchProducts(@Param("id")Integer id);
     
     @Modifying
     @Query("DELETE FROM Product WHERE id = :id")
     void deleteProduct(@Param("id")Integer id);
     
-    /*@Modifying
-    @Query("UPDATE Product SET name = :name WHERE id = :id")
-    void updateProduct(@Param("name")String name, @Param("id")Integer id);
+    @Modifying
+    @Query(value = "INSERT INTO products (name, categoryid, quantity, price, weight, description, image) VALUES (:name, :categoryid, :quantity, :price, :weight, :description, :image)", nativeQuery = true)
+    void insertProduct(@Param("name") String name,
+    		@Param("categoryid")Integer categoryid, 
+    		@Param("quantity")Integer quantity, 
+    		@Param("price")Double price, 
+    		@Param("weight")Integer weight, 
+    		@Param("description")String description, 
+    		@Param("image")String image
+    		);
+
     
     @Modifying
-    @Query(value = "INSERT INTO products (name) VALUES (:name)", nativeQuery = true)
-    void insertProduct(@Param("name") String name);*/
-
+    @Query("UPDATE Product SET name = :name, categoryid = :categoryid, quantity = :quantity, "
+    		+ "price = :price, weight = :weight, description = description, image = :image WHERE id = :id")
+    void updateProduct(@Param("id")Integer id,
+    		@Param("name") String name,
+    		@Param("categoryid")Integer categoryid, 
+    		@Param("quantity")Integer quantity, 
+    		@Param("price")Double price, 
+    		@Param("weight")Integer weight, 
+    		@Param("description")String description, 
+    		@Param("image")String image
+    		);
+    
     @Modifying
     @Query("UPDATE Product SET onsale = 0, discount = 0 WHERE id = :id")
 	void resetDiscount(@Param("id")Integer id);

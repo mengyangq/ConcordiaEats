@@ -37,17 +37,25 @@ public class AdminProductsController {
         return "adminProducts";
     }
 	
-	@GetMapping("/admin/insert")
+	@GetMapping("/admin/products/insert")
     public String showInsertProductsPage(Model model) {
+		Map<Integer, String> categoryNames = new HashMap<>();
+		categoryNames.put(1, "Meals");
+		categoryNames.put(2, "Snacks");
+		categoryNames.put(3, "Fruits");
+		categoryNames.put(4, "Vegetables");
+		categoryNames.put(5, "Drinks");
 		
-        return "adminProductsInsert";
+		model.addAttribute("categoryNames", categoryNames);
+		
+        return "adminInsertProducts";
     }
 	
-	@GetMapping("/admin/update")
+	@GetMapping("/admin/products/update")
     public String showUpdateProductsPage(@RequestParam("id") Integer id, Model model) {
 		
 		model.addAttribute("updateId", id);
 		
-        return "adminProductsUpdate";
+        return "adminUpdateProducts";
     }
 }

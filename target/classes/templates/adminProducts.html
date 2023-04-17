@@ -58,8 +58,11 @@
 	<br>
 	
 	<div class="container-fluid">
-		<a href="/admin/insert">
-			<button type="button" style="margin: 20px 0" class="btn" >Add Product</button>
+		<a href="/admin/products/insert">
+		    <button type="button" style="margin: 20px 0; display: inline-block;" class="btn">Add Product</button>
+		    <div th:if="${message}" style="display: inline-block; font-size: 18px; font-weight: bold;" class = "ml-3">
+		        <p th:text="${message}" style="color: #0072a8;"></p>
+		    </div>
 		</a>
 		
 		<table id="searchTable" class="table">
@@ -94,7 +97,7 @@
 					<td th:text="${product.sold}"></td>
 					
 					<td>
-						<form action="/admin/update" method="post">
+						<form action="/admin/products/update" method="post">
 							<input type="hidden" name="id" th:value="${product.id}">
 							<input type="submit" value="Update" class="btn btn-info btn-lg">
 						</form>
