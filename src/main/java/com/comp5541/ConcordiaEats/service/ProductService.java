@@ -56,5 +56,10 @@ public class ProductService {
 	public void updateDiscount(Integer discount, Integer id) {
 		productRepository.updateDiscount(discount, id);	
 	}
+
+	public List<Product> searchSelling() {
+		// TODO Auto-generated method stub
+		return productRepository.searchSelling();
+	}
     
 }

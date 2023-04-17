@@ -50,6 +50,10 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Modifying
     @Query("UPDATE Product SET onsale = 1, discount = :discount WHERE id = :id")
 	void updateDiscount(@Param("discount")Integer discount, @Param("id")Integer id);
+
+    @Modifying
+    @Query("SELECT p FROM Product p ORDER BY sold DESC, price DESC, name ASC, onsale ASC")
+	List<Product> searchSelling();
 }
 
 
