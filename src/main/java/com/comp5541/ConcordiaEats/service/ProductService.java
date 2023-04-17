@@ -5,9 +5,12 @@ import com.comp5541.ConcordiaEats.model.Favorite;
 import com.comp5541.ConcordiaEats.repository.FavoriteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 @Service
+@Transactional
 public class ProductService {
     @Autowired
     private ProductRepository productRepository;
@@ -24,11 +27,12 @@ public class ProductService {
         return productRepository.searchProducts(productName, minPrice, maxPrice);
     }*/
     
- // Simplified method to retrieve all products
+    // Simplified method to retrieve all products
     public List<Product> searchProducts() {
         return productRepository.searchProducts();
     }
     
+
     public void addProductToFavorites(Integer userId, Integer productId) {
         // Create a new Favorite instance
         Favorite favorite = new Favorite();
@@ -40,5 +44,17 @@ public class ProductService {
         // Save the new favorite to the favorites table
         favoriteRepository.save(favorite);
     }
+
+    public void deleteProduct(Integer id) {
+    	productRepository.deleteProduct(id);
+    }
+
+	public void resetDiscount(Integer id) {
+		productRepository.resetDiscount(id);
+	}
+
+	public void updateDiscount(Integer discount, Integer id) {
+		productRepository.updateDiscount(discount, id);	
+	}
     
 }

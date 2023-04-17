@@ -8,9 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.comp5541.ConcordiaEats.model.Category;
-import com.comp5541.ConcordiaEats.model.Product;
 import com.comp5541.ConcordiaEats.service.CategoryService;
-import com.comp5541.ConcordiaEats.service.ProductService;
 
 @Controller
 public class AdminCategoriesController {
