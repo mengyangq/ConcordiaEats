@@ -98,10 +98,13 @@
 								<input type="submit" value="Remove😞"
 									class="btn btn-gray btn-sm">
 							</form>
-							<!-- Keep the Buy button as is, if needed -->
-							<form action="/cart" method="get" class="ml-2">
-								<input type="hidden" name="id" th:value="${favorite.id}">
-								<input type="submit" value="Buy" class="btn btn-info btn-sm">
+							<form th:action="@{/addToCartF}" method="post"
+								onsubmit="saveScrollPosition()" class="ml-2">
+								<input type="hidden" name="product_id" th:value="${favorite.id}">
+								<!-- Add a hidden input field for the quantity with a default value of 1 -->
+								<input type="hidden" name="quantity" value="1"> <input
+									type="submit" value="Buy" class="btn btn-info btn-sm"
+									th:disabled="${productIdsInCart.contains(favorite.id)}">
 							</form>
 						</div>
 					</td>
@@ -111,7 +114,15 @@
 	</div>
 
 	<script>
+		function saveScrollPosition() {
+			sessionStorage.setItem('scrollPosition', window.pageYOffset);
+		}
 		$(document).ready(function() {
+			var scrollPosition = sessionStorage.getItem('scrollPosition');
+			if (scrollPosition) {
+				window.scrollTo(0, scrollPosition);
+				sessionStorage.removeItem('scrollPosition'); // Clear the saved scroll position
+			}
 			// Initialize the table as a DataTable
 			$('#favoritesTable').DataTable();
 		});

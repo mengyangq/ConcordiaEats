@@ -109,9 +109,13 @@
 								<input type="submit" value="Like😀" class="btn btn-info btn-sm"
 									th:disabled="${favoritedProductIds.contains(search.id)}">
 							</form>
-							<form action="/cart" method="get" class="ml-2">
-								<input type="hidden" name="id" th:value="${search.id}">
-								<input type="submit" value="Buy" class="btn btn-info btn-sm">
+							<form th:action="@{/addToCart}" method="post"
+								onsubmit="saveScrollPosition()" class="ml-2">
+								<input type="hidden" name="product_id" th:value="${search.id}">
+								<!-- Add a hidden input field for the quantity with a default value of 1 -->
+								<input type="hidden" name="quantity" value="1"> <input
+									type="submit" value="Buy" class="btn btn-info btn-sm"
+									th:disabled="${productIdsInCart.contains(search.id)}">
 							</form>
 						</div>
 					</td>

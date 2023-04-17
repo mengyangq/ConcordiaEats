@@ -1,8 +1,10 @@
 package com.comp5541.ConcordiaEats.controller;
 
 import com.comp5541.ConcordiaEats.model.Product;
+import com.comp5541.ConcordiaEats.service.CartService;
 import com.comp5541.ConcordiaEats.service.ProductService;
 import com.comp5541.ConcordiaEats.repository.FavoriteRepository;
+import com.comp5541.ConcordiaEats.repository.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,35 +22,19 @@ import java.util.HashMap;
 import java.util.List;
 
 @Controller
-/*
- * public class SearchController {
- * 
- * @Autowired private ProductService productService;
- * 
- * @GetMapping("/search") public String showSearchPage(Model model,
- * 
- * @RequestParam(value = "productName", required = false) String productName,
- * 
- * @RequestParam(value = "minPrice", required = false) Double minPrice,
- * 
- * @RequestParam(value = "maxPrice", required = false) Double maxPrice) {
- * Map<Integer, String> categoryNames = new HashMap<>(); categoryNames.put(1,
- * "Meals"); categoryNames.put(2, "Snacks"); categoryNames.put(3, "Fruits");
- * categoryNames.put(4, "Vegetables"); categoryNames.put(5, "Drinks");
- * 
- * // Add the mapping to the model model.addAttribute("categoryNames",
- * categoryNames); // Retrieve products based on search criteria List<Product>
- * searchResults = productService.searchProducts(productName, minPrice,
- * maxPrice); model.addAttribute("searchResults", searchResults); return
- * "search"; }
- */
 @SessionAttributes({"username", "user_id"})
 public class SearchController {
 	@Autowired
 	private ProductService productService;
 	
 	@Autowired
+	private CartService cartService;
+	
+	@Autowired
 	private FavoriteRepository favoriteRepository;
+	
+	@Autowired
+	private CartRepository cartRepository;
 
 	@GetMapping("/search")
 	public String showSearchPage(Model model,
@@ -59,8 +45,15 @@ public class SearchController {
 		// Query the database for the list of product IDs that the user has already added to favorites
 	    List<Integer> favoritedProductIds = favoriteRepository.findFavoritedProductIdsByUserId(userId);
 	    
+	 // Get the list of product IDs that the user has already added to cart
+	    List<Integer> productIdsInCart = cartRepository.findProductIdsInCartByUserId(userId);
+
+	    
 	    // Add the list of favorited product IDs to the model
 	    model.addAttribute("favoritedProductIds", favoritedProductIds);
+	    
+	 // Add the list of product IDs in the cart to the model
+	    model.addAttribute("productIdsInCart", productIdsInCart);
 	    
 		Map<Integer, String> categoryNames = new HashMap<>();
 		categoryNames.put(1, "Meals");
@@ -96,5 +89,25 @@ public class SearchController {
             return "redirect:/search";
         }
     }
+	
+	@PostMapping("/addToCart")
+	public String addToCart(
+	        @ModelAttribute("user_id") Integer userId,
+	        @RequestParam("product_id") Integer productId,
+	        @RequestParam("quantity") Integer quantity,
+	        RedirectAttributes redirectAttributes) {
+	    try {
+	        // Call the addProductToCart function to insert data into the cart table
+	        cartService.addProductToCart(userId, productId, quantity);
+
+	        // Set success message and redirect to the search page
+	        redirectAttributes.addFlashAttribute("successMessage", "Product added to cart successfully.");
+	        return "redirect:/search";
+	    } catch (Exception ex) {
+	        // Set error message and redirect to the search page
+	        redirectAttributes.addFlashAttribute("errorMessage", "Error adding product to cart.");
+	        return "redirect:/search";
+	    }
+	}
 
 }
