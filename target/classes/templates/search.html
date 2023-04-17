@@ -85,6 +85,7 @@
 					<th scope="col">Preview</th>
 					<th scope="col">Quantity</th>
 					<th scope="col">Price</th>
+					<th scope="col">On_Sale</th>
 					<th scope="col">Weight (in ml/g)</th>
 					<th scope="col">Description</th>
 					<th scope="col">Action</th>
@@ -99,6 +100,7 @@
 					<td><img th:src="${search.image}" height="100px" width="100px"></td>
 					<td th:text="${search.quantity}"></td>
 					<td th:text="${search.price}"></td>
+					<td th:utext="${search.onsale > 0 ? '- $' + search.discount * search.price / 100 + '<br> (' + search.discount + '% off)' : 'No'}"></td>
 					<td th:text="${search.weight}"></td>
 					<td th:text="${search.description}"></td>
 					<td>
