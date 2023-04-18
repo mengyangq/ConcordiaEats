@@ -67,3 +67,40 @@ Spring MVC
 Spring Data JPA
 Thymeleaf
 JUnit
+
+## Screenshots of the Customer-side Interface
+
+### Login (same for admin)
+
+![](https://i.postimg.cc/8zSqhLg2/1-login.png)
+
+### Customer Main
+
+![](https://i.postimg.cc/Zq0j3q0k/2-customer-Main.png)
+
+### Search
+
+![](https://i.postimg.cc/J4wgLj0s/3-search.png)
+
+### Cart
+
+![](https://i.postimg.cc/nrmPmhRV/4-cart.png)
+
+## Screenshots of the Admin-side Interface
+
+### Admin Main
+
+![](https://i.postimg.cc/ncvWcM90/5-admin-Main.png)
+
+### Product Update
+
+![](https://i.postimg.cc/y635tL1q/6-product.png)
+
+### Discount
+
+![](https://i.postimg.cc/c4YpgX27/7-discount.png)
+
+### Most/least Selling
+
+![](https://i.postimg.cc/pLJ3ky2p/8-selling.png)
+
