@@ -63,6 +63,9 @@
 		    <div th:if="${message}" style="display: inline-block; font-size: 18px; font-weight: bold;" class = "ml-3">
 		        <p th:text="${message}" style="color: #0072a8;"></p>
 		    </div>
+		    <div th:if="${errorMessage}" style="display: inline-block; font-size: 18px; font-weight: bold;" class = "ml-3">
+		        <p th:text="${errorMessage}" style="color: #da3a16;"></p>
+		    </div>		    
 		</a>
 		
 		<table id="searchTable" class="table">
@@ -88,7 +91,7 @@
 					<td th:text="${product.id}"></td>
 					<td th:text="${product.name}"></td>
 					<td th:text="${categoryNames[product.categoryid]}"></td>
-					<td><img th:src="${product.image}" height="100px" width="100px"></td>
+					<td><img th:src="${product.image}" height="100px" width="100px" onerror="this.onerror=null;this.src='https://placehold.co/100x100.png';" ></td>
 					<td th:text="${product.quantity}"></td>
 					<td th:text="'$' + ${product.price}"></td>
 					<td th:text="${product.onsale > 0 ? '$' + product.discount * product.price / 100 + ' (' + product.discount + '%)' : 'No'}"></td>
@@ -97,7 +100,7 @@
 					<td th:text="${product.sold}"></td>
 					
 					<td>
-						<form action="/admin/products/update" method="post">
+						<form action="/admin/products/update" method="get">
 							<input type="hidden" name="id" th:value="${product.id}">
 							<input type="submit" value="Update" class="btn btn-info btn-lg">
 						</form>

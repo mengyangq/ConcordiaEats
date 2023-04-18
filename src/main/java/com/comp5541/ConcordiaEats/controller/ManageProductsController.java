@@ -30,7 +30,7 @@ public class ManageProductsController {
 
 	@PostMapping("/admin/updateProducts")
 	public String updateProducts(@Param("id")Integer id,
-			@Param("name") String name,
+			@Param("newname") String name,
     		@Param("categoryid")Integer categoryid, 
     		@Param("quantity")Integer quantity, 
     		@Param("price")Double price, 
@@ -53,19 +53,22 @@ public class ManageProductsController {
 		
 		model.addAttribute("categoryNames", categoryNames);
 		
+			
 		try {
 			productService.updateProduct(id, name, categoryid, quantity, 
-	        		price, weight, description, image);
+			    		price, weight, description, image);
+			
 			model.addAttribute("message", "Woo-Hoo: Product has been successfully updated!");
 			
-			List<Product> products = productService.searchProducts();
-			model.addAttribute("products", products);
-			
-			return "adminProducts";
 		} catch (Exception ex) {
+			
 			model.addAttribute("errorMessage", "Error: product with same name already exists!");
-			return "adminUpdateProducts";
 		}
+		
+		List<Product> products = productService.searchProducts();
+		model.addAttribute("products", products);
+		
+		return "adminProducts";
 	}
 	
 	@PostMapping("/admin/insertProducts")

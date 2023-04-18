@@ -52,8 +52,17 @@ public class AdminProductsController {
 	
 	@GetMapping("/admin/products/update")
     public String showUpdateProductsPage(@RequestParam("id") Integer id, Model model) {
+		Map<Integer, String> categoryNames = new HashMap<>();
+		categoryNames.put(1, "Meals");
+		categoryNames.put(2, "Snacks");
+		categoryNames.put(3, "Fruits");
+		categoryNames.put(4, "Vegetables");
+		categoryNames.put(5, "Drinks");
 		
-		model.addAttribute("updateId", id);
+		model.addAttribute("categoryNames", categoryNames);
+		
+		Product product = productService.searchProducts(id);
+		model.addAttribute("product", product);
 		
         return "adminUpdateProducts";
     }

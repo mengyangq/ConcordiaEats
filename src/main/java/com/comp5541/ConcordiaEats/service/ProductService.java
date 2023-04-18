@@ -3,6 +3,7 @@ package com.comp5541.ConcordiaEats.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,6 +39,9 @@ public class ProductService {
     	return productRepository.searchProducts(id);
     }
     
+    /*public Integer searchDuplicate(Integer id, String name) {
+    	return productRepository.searchDuplicate(id, name);
+    };*/
 
     public void addProductToFavorites(Integer userId, Integer productId) {
         // Create a new Favorite instance
