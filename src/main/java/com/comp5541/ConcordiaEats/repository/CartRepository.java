@@ -6,9 +6,11 @@ import com.comp5541.ConcordiaEats.model.CartItemInfo;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface CartRepository extends JpaRepository<Cart, Cart.CartId> {
@@ -20,5 +22,10 @@ public interface CartRepository extends JpaRepository<Cart, Cart.CartId> {
     @Query("SELECT new com.comp5541.ConcordiaEats.model.CartItemInfo(p, c.quantity) " +
             "FROM Product p JOIN Cart c ON p.id = c.id.product_id WHERE c.id.user_id = :user_id")
      List<CartItemInfo> findCartItemsByUserId(@Param("user_id") Integer userId);
+    
+    @Modifying
+    @Transactional
+    @Query("DELETE FROM Cart c WHERE c.id.user_id = :userId")
+    void deleteByUserId(@Param("userId") Integer userId);
 
 }

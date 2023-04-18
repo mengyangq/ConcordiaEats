@@ -17,8 +17,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.comp5541.ConcordiaEats.service.CartService;
+import com.comp5541.ConcordiaEats.service.*;
 import com.comp5541.ConcordiaEats.model.CartItemInfo;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Controller
 @SessionAttributes("user_id")
@@ -26,6 +29,12 @@ public class CartController {
 	@Autowired
 	private CartService cartService;
 	
+	@Autowired
+    private CheckoutService checkoutService;
+
+	// Define a logger for this class
+    private static final Logger logger = LoggerFactory.getLogger(CartController.class);
+
 	
 	@GetMapping("/cart")
 	public String showCartPage(@ModelAttribute("user_id") Integer userId, Model model) {
@@ -79,6 +88,45 @@ public class CartController {
 	        // Set error message and redirect to cart page
 	        redirectAttributes.addFlashAttribute("errorMessage", "Error removing product from cart.");
 	        return "redirect:/cart"; // Update the URL to the cart page
+	    }
+	}
+	
+	@PostMapping("/checkout")
+	public String performCheckout(@ModelAttribute("user_id") Integer userId, Model model) {
+	    // Get the current list of cart items for the user
+	    List<CartItemInfo> cartItems = cartService.getCartItemsByUserId(userId);
+
+	    // Check if the cart is empty
+	    if (cartItems.isEmpty()) {
+	        // Add a message to the model indicating that the cart is empty
+	        model.addAttribute("errorMessage", "Nothing to checkout.");
+	        model.addAttribute("cartItems", cartItems);
+	        return "cart";
+	    }
+
+	    try {
+	        // Perform the checkout process
+	        checkoutService.performCheckout(userId);
+
+	        // Add success message to the model
+	        model.addAttribute("message", "Checkout successful!");
+
+	        // Get the updated list of cart items for the current user
+	        cartItems = cartService.getCartItemsByUserId(userId);
+	        model.addAttribute("cartItems", cartItems);
+
+	        // Return the cart page view without redirecting
+	        return "cart";
+	    } catch (Exception e) {
+	        // Handle any exception that may occur during the checkout process
+	        model.addAttribute("errorMessage", "Error during checkout: " + e.getMessage());
+
+	        // Get the updated list of cart items for the current user
+	        cartItems = cartService.getCartItemsByUserId(userId);
+	        model.addAttribute("cartItems", cartItems);
+
+	        // Return the cart page view without redirecting
+	        return "cart";
 	    }
 	}
 

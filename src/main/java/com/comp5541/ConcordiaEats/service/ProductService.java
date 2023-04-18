@@ -42,6 +42,11 @@ public class ProductService {
     	return productRepository.searchDuplicate(id, name);
     };*/
 
+    public void updateProduct(Product product) {
+        // Update the product in the database based on the product object provided
+        productRepository.save(product);
+    }
+    
     public void addProductToFavorites(Integer userId, Integer productId) {
         // Create a new Favorite instance
         Favorite favorite = new Favorite();

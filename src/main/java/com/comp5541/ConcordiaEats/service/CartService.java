@@ -60,4 +60,9 @@ public class CartService {
         List<CartItemInfo> cartItems = cartRepository.findCartItemsByUserId(userId);
         return cartItems;
     }
+    
+    public void clearCartByUserId(Integer userId) {
+        // Delete all cart items based on the user ID
+        cartRepository.deleteByUserId(userId);
+    }
 }
