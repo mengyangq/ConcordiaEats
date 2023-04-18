@@ -78,16 +78,18 @@
 					<th scope="col">Product Name</th>
 					<th scope="col">Category</th>
 					<th scope="col">Price</th>
+					<th scope="col">On_Sale</th>
 					<th scope="col">Quantity</th>
 					<th scope="col">Action</th>
 				</tr>
 			</thead>
 			<tbody>
 				<!-- Use Thymeleaf to iterate over the cartItems list -->
-				<tr th:each="item : ${cartItems}">
+				<tr th:each="item : ${cartItems}" th:data-discount="${item.product.discount}">
 					<td th:text="${item.product.name}"></td>
 					<td th:text="${categoryNames[item.product.categoryid]}"></td>
 					<td class="price" th:text="${item.product.price}"></td>
+					<td th:utext="${item.product.onsale > 0 ? '- $' + item.product.discount * item.product.price / 100 + '<br> (' + item.product.discount + '% off)' : 'No'}"></td>
 					<!--  <td class="quantity" data-product-id="${item.product.id}"
 						th:text="${item.quantity}"></td>-->
 					<td>
@@ -258,24 +260,28 @@
 						});
 		// Function to calculate and update the total price
 		function updateTotalPrice() {
-			var totalPrice = 0;
-			// Iterate over each row in the table
-			$('#cartTable tbody tr').each(
-					function() {
-						// Get the price and quantity for the current row
-						var price = parseFloat($(this).find('.price').text());
-						var quantity = parseInt($(this).find('.quantity-value')
-								.text());
-						// Update the total price
-						totalPrice += (price * quantity);
-					});
+		    var totalPrice = 0;
+		    // Iterate over each row in the table
+		    $('#cartTable tbody tr').each(function() {
+		        // Get the price, quantity, and discount for the current row
+		        var price = parseFloat($(this).find('.price').text());
+		        var quantity = parseInt($(this).find('.quantity-value').text());
+		        var discountPercentage = parseFloat($(this).data('discount'));
 
-			// Display the total price in the HTML element
-			$('#totalPrice').text('$' + totalPrice.toFixed(2));// Show total price with two decimal places
+		        // Calculate the discounted price based on the discount percentage
+		        var discountedPrice = price * (1 - discountPercentage / 100);
+
+		        // Update the total price
+		        totalPrice += (discountedPrice * quantity);
+		    });
+
+		    // Display the total price in the HTML element
+		    $('#totalPrice').text('$' + totalPrice.toFixed(2)); // Show total price with two decimal places
 		}
 
 		// Call the updateTotalPrice function initially to calculate the total price
 		updateTotalPrice();
+
 	</script>
 
 </body>
