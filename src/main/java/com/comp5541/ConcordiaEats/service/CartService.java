@@ -65,4 +65,15 @@ public class CartService {
         // Delete all cart items based on the user ID
         cartRepository.deleteByUserId(userId);
     }
+    
+    public Cart findCartItemByUserIdAndProductId(Integer userId, Integer productId) {
+        // Create a CartId instance based on the composite key (userId, productId)
+        Cart.CartId cartId = new Cart.CartId();
+        cartId.setUser_id(userId);
+        cartId.setProduct_id(productId);
+
+        // Retrieve the cart item based on the CartId
+        return cartRepository.findById(cartId).orElse(null);
+    }
+
 }

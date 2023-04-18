@@ -87,7 +87,9 @@
 					<td><img th:src="${search.image}" height="100px" width="100px"></td>
 					<td th:text="${search.quantity}"></td>
 					<td th:text="${search.price}"></td>
-					<td th:utext="${search.onsale > 0 ? '- $' + search.discount * search.price / 100 + '<br> (' + search.discount + '% off)' : 'No'}"></td>
+					<td th:if="${search.onsale > 0}"
+						th:utext="'- $' + ${#numbers.formatDecimal(search.discount * search.price / 100, 1, 2)} + '&lt;br&gt; (' + ${search.discount} + '% off)'"></td>
+					<td th:if="${search.onsale == 0}">No</td>
 					<td th:text="${search.weight}"></td>
 					<td th:text="${search.description}"></td>
 					<td>

@@ -87,7 +87,9 @@
 					<td th:text="${item.product.name}"></td>
 					<td th:text="${categoryNames[item.product.categoryid]}"></td>
 					<td class="price" th:text="${item.product.price}"></td>
-					<td th:utext="${item.product.onsale > 0 ? '- $' + item.product.discount * item.product.price / 100 + '<br> (' + item.product.discount + '% off)' : 'No'}"></td>
+					<td th:if="${item.product.onsale > 0}"
+						th:utext="'- $' + ${#numbers.formatDecimal(item.product.discount * item.product.price / 100, 1, 2)} + '&lt;br&gt; (' + ${item.product.discount} + '% off)'"></td>
+					<td th:if="${item.product.onsale == 0}">No</td>
 					<!--  <td class="quantity" data-product-id="${item.product.id}"
 						th:text="${item.quantity}"></td>-->
 					<td>

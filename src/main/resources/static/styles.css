@@ -303,3 +303,33 @@ h1.heading {
 	font-weight: 600;
 	text-transform: uppercase
 }
+
+
+.caption-text {
+    color: #912338; /* Change caption color */
+}
+
+.product-img {
+    width: 300px; /* Increase image size */
+}
+
+
+/* Style for original price when there's a discounted price */
+.original-price {
+    font-size: 1.2em;
+    color: #999;
+    text-decoration: line-through;
+    position: relative;
+}
+
+/* Style for discounted price */
+.discount-price {
+    font-size: 1.6em;
+    color: #912338;
+    font-weight: bold;
+    padding: 5px 10px;
+    /*background-color: #f9e6e6;*/
+    border-radius: 10px;
+}
+
+

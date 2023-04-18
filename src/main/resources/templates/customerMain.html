@@ -15,6 +15,14 @@
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/styles.css">
+<style>
+/* Style for price when there's no discount */
+.price {
+	font-size: 1.4em;
+	color: #333;
+	font-weight: bold;
+}
+</style>
 <title>ConcordiaEats - Home</title>
 </head>
 
@@ -59,56 +67,80 @@
 	<section>
 		<div>
 			<!-- CAROUSEL -->
-<div class="bg-product">
-    <div class="container product">
-        <div class="row">
-            <div id="sliderproduct" class="carousel slide" data-ride="carousel" data-interval="10000">
-                <ol class="carousel-indicators">
-                    <th:block th:each="recommendedProduct, iterStat : ${recommendedProducts}">
-                        <li data-target="#sliderproduct" data-slide-to="${iterStat.index}" th:class="${iterStat.first} ? 'active' : ''"></li>
-                    </th:block>
-                </ol>
-                <div class="carousel-inner" role="listbox" data-interval="10000000">
-                    <th:block th:each="recommendedProduct, iterStat : ${recommendedProducts}">
-                        <div th:class="${iterStat.first} ? 'carousel-item active' : 'carousel-item'">
-                            <div class="container text-center">
-                                <div class="row">
-                                    <div class="col-sm-6 image">
-                                        <div class="item">
-                                            <h1 th:text="${recommendedProduct.caption}">Caption</h1>
-                                            <img class="img-fluid" th:src="${recommendedProduct.product.image}" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="details">
-                                            <h2 class="cr3" th:text="${recommendedProduct.product.name}">Product Name</h2>
-                                            <p class="cr4" th:text="${recommendedProduct.product.description}">Product Description</p>
-                                            <div th:if="${recommendedProduct.product.onsale} == 1">
-                                                <p class="original-price" th:text="${recommendedProduct.product.price}">Original Price</p>
-                                                <p class="discount-price" th:text="${recommendedProduct.product.price * (1 - (recommendedProduct.product.discount / 100.0))}">Discounted Price</p>
-                                            </div>
-                                            <div th:if="${recommendedProduct.product.onsale} == 0">
-                                                <p class="price" th:text="${recommendedProduct.product.price}">Price</p>
-                                            </div>
-                                            <a href="#" class="btn btn-food">Buy Now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </th:block>
-                </div>
-                <a class="carousel-control-prev" href="#sliderproduct" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                </a>
-                <a class="carousel-control-next" href="#sliderproduct" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- CAROUSEL -->
+			<div class="bg-product">
+				<div class="container product">
+					<div class="row">
+						<div id="sliderproduct" class="carousel slide"
+							data-ride="carousel" data-interval="10000">
+							<ol class="carousel-indicators">
+								<th:block
+									th:each="recommendedProduct, iterStat : ${recommendedProducts}">
+									<li data-target="#sliderproduct"
+										data-slide-to="${iterStat.index}"
+										th:class="${iterStat.first} ? 'active' : ''"></li>
+								</th:block>
+							</ol>
+							<div class="carousel-inner" role="listbox"
+								data-interval="10000000">
+								<th:block
+									th:each="recommendedProduct, iterStat : ${recommendedProducts}">
+									<div
+										th:class="${iterStat.first} ? 'carousel-item active' : 'carousel-item'">
+										<div class="container text-center">
+											<div class="row">
+												<div class="col-sm-6 image">
+													<div class="item">
+														<h1 class="caption-text"
+															th:text="${recommendedProduct.caption}">Caption</h1>
+														<img class="img-fluid product-img"
+															th:src="${recommendedProduct.product.image}" alt="">
+													</div>
+												</div>
+												<div class="col-sm-6">
+													<div class="details">
+														<h2 class="cr3"
+															th:text="${recommendedProduct.product.name}">Product
+															Name</h2>
+														<p class="cr4"
+															th:text="${recommendedProduct.product.description}">Product
+															Description</p>
+														<div th:if="${recommendedProduct.product.onsale} == 1">
+															<p class="original-price"
+																th:text="${recommendedProduct.product.price}">Original
+																Price</p>
+															<p class="discount-price"
+																th:text="${#numbers.formatDecimal(recommendedProduct.product.price * (1 - (recommendedProduct.product.discount / 100.0)), 1, 2)}">Discounted
+																Price</p>
+														</div>
+														<div th:if="${recommendedProduct.product.onsale} == 0">
+															<p class="price"
+																th:text="${recommendedProduct.product.price}">Price</p>
+														</div>
+														<form th:action="@{/addToCartR}" method="post">
+															<input type="hidden" name="product_id"
+																th:value="${recommendedProduct.product.id}"> <input
+																type="hidden" name="quantity" value="1"> <input
+																type="submit" value="Buy Now" class="btn btn-food">
+														</form>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</th:block>
+							</div>
+							<a class="carousel-control-prev" href="#sliderproduct"
+								role="button" data-slide="prev"> <span
+								class="carousel-control-prev-icon" aria-hidden="true"></span>
+							</a> <a class="carousel-control-next" href="#sliderproduct"
+								role="button" data-slide="next"> <span
+								class="carousel-control-next-icon" aria-hidden="true"></span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- CAROUSEL -->
 
 
 			<div class="row m-3 justify-content-center">
