@@ -63,10 +63,10 @@ Quality control efforts include restructuring the base code to adhere to the MVC
 
 ## Dependencies
 
-Spring MVC
-Spring Data JPA
-Thymeleaf
-JUnit
+- Spring MVC
+- Spring Data JPA
+- Thymeleaf
+- JUnit
 
 ## Screenshots of the Customer-side Interface
 
