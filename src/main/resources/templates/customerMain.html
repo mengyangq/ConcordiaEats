@@ -106,15 +106,15 @@
 															Description</p>
 														<div th:if="${recommendedProduct.product.onsale} == 1">
 															<p class="original-price"
-																th:text="${recommendedProduct.product.price}">Original
+																th:text="'$' + ${recommendedProduct.product.price}">Original
 																Price</p>
 															<p class="discount-price"
-																th:text="${#numbers.formatDecimal(recommendedProduct.product.price * (1 - (recommendedProduct.product.discount / 100.0)), 1, 2)}">Discounted
+																th:text="'$' + ${#numbers.formatDecimal(recommendedProduct.product.price * (1 - (recommendedProduct.product.discount / 100.0)), 1, 2)}">Discounted
 																Price</p>
 														</div>
 														<div th:if="${recommendedProduct.product.onsale} == 0">
 															<p class="price"
-																th:text="${recommendedProduct.product.price}">Price</p>
+																th:text="'$' + ${recommendedProduct.product.price}">Price</p>
 														</div>
 														<form th:action="@{/addToCartR}" method="post">
 															<input type="hidden" name="product_id"
