@@ -46,9 +46,7 @@
 					</li>
 					<li class="nav-item"><a class="nav-link" href="/cart">Cart</a>
 					</li>
-					<li class="nav-item"><a class="nav-link"
-						href="/profileDisplay">Profile</a></li>
-					<li class="nav-item"><a class="nav-link" href="/logout">Logout</a>
+					<li class="nav-item"><a class="nav-link" href="/login">Logout</a>
 					</li>
 				</ul>
 			</div>
@@ -82,11 +80,23 @@
                 <td th:text="${drink.weight}"></td>
                 <td th:text="${drink.description}"></td>
                 <td>
-                    <form action="/buy" method="get">
-                        <input type="hidden" name="id" th:value="${drink.id}">
-                        <input type="submit" value="Buy" class="btn btn-info btn-lg">
-                    </form>
-                </td>
+						<div class="d-flex">
+							<form th:action="@{/addToFavoritesDrink}" method="post"
+								onsubmit="saveScrollPosition()">
+								<input type="hidden" name="product_id" th:value="${drink.id}">
+								<input type="submit" value="Like😀" class="btn btn-info btn-sm"
+									th:disabled="${favoritedProductIds.contains(drink.id)}">
+							</form>
+							<form th:action="@{/addToCartDrink}" method="post"
+								onsubmit="saveScrollPosition()" class="ml-2">
+								<input type="hidden" name="product_id" th:value="${drink.id}">
+								<!-- Add a hidden input field for the quantity with a default value of 1 -->
+								<input type="hidden" name="quantity" value="1"> <input
+									type="submit" value="Buy" class="btn btn-info btn-sm"
+									th:disabled="${productIdsInCart.contains(drink.id)}">
+							</form>
+						</div>
+					</td>
             </tr>
         </tbody>
 		</table>

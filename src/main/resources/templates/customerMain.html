@@ -59,153 +59,57 @@
 	<section>
 		<div>
 			<!-- CAROUSEL -->
-			<div class="bg-product">
-				<div class="container product">
-					<div class="row">
-						<div id="sliderproduct" class="carousel slide "
-							data-ride="carousel" data-interval="10000">
-							<ol class="carousel-indicators">
-								<li data-target="#sliderproduct" data-slide-to="0"
-									class="active"></li>
-								<li data-target="#sliderproduct" data-slide-to="1"></li>
-								<li data-target="#sliderproduct" data-slide-to="2"></li>
-							</ol>
+<div class="bg-product">
+    <div class="container product">
+        <div class="row">
+            <div id="sliderproduct" class="carousel slide" data-ride="carousel" data-interval="10000">
+                <ol class="carousel-indicators">
+                    <th:block th:each="recommendedProduct, iterStat : ${recommendedProducts}">
+                        <li data-target="#sliderproduct" data-slide-to="${iterStat.index}" th:class="${iterStat.first} ? 'active' : ''"></li>
+                    </th:block>
+                </ol>
+                <div class="carousel-inner" role="listbox" data-interval="10000000">
+                    <th:block th:each="recommendedProduct, iterStat : ${recommendedProducts}">
+                        <div th:class="${iterStat.first} ? 'carousel-item active' : 'carousel-item'">
+                            <div class="container text-center">
+                                <div class="row">
+                                    <div class="col-sm-6 image">
+                                        <div class="item">
+                                            <h1 th:text="${recommendedProduct.caption}">Caption</h1>
+                                            <img class="img-fluid" th:src="${recommendedProduct.product.image}" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="details">
+                                            <h2 class="cr3" th:text="${recommendedProduct.product.name}">Product Name</h2>
+                                            <p class="cr4" th:text="${recommendedProduct.product.description}">Product Description</p>
+                                            <div th:if="${recommendedProduct.product.onsale} == 1">
+                                                <p class="original-price" th:text="${recommendedProduct.product.price}">Original Price</p>
+                                                <p class="discount-price" th:text="${recommendedProduct.product.price * (1 - (recommendedProduct.product.discount / 100.0))}">Discounted Price</p>
+                                            </div>
+                                            <div th:if="${recommendedProduct.product.onsale} == 0">
+                                                <p class="price" th:text="${recommendedProduct.product.price}">Price</p>
+                                            </div>
+                                            <a href="#" class="btn btn-food">Buy Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </th:block>
+                </div>
+                <a class="carousel-control-prev" href="#sliderproduct" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </a>
+                <a class="carousel-control-next" href="#sliderproduct" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- CAROUSEL -->
 
-							<div class="carousel-inner" role="listbox"
-								data-interval="10000000">
-								<div class="carousel-item active">
-									<div class="container text-center">
-										<div class="row">
-											<div class="col-sm-6 image">
-												<div class="item">
-													<h1>Today's Deal</h1>
-													<img class="img-fluid"
-														src="https://placehold.co/600x400/000000/FFFFFF.png"
-														alt="">
-												</div>
-												<!--enditem-->
-											</div>
-											<!--endcol-->
-											<div class="col-sm-6">
-												<!--endtop-->
-												<div class="details">
-													<h2 class="cr3">Burger</h2>
-													<p class="cr4">
-														tomato, green salad, pita,<br> ketchup, mayonnaise.
-													</p>
-													<div class="rating">
-														<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-															class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-															class="fa fa-star"></i>
-													</div>
-													<!--endrating-->
-													<p class="cr1">$ 3.55-$ 5.55</p>
-													<a href="/user/products" class="btn btn-food">Buy Now</a>
-												</div>
-												<!--enddetails-->
-											</div>
-											<!--endcol-->
-										</div>
-										<!--endrow-->
-									</div>
-									<!--endcontainer-->
-								</div>
-
-								<!--endcarousel-item-->
-								<div class="carousel-item">
-									<div class="container text-center">
-										<div class="row">
-											<div class="col-sm-6 image">
-												<div class="item">
-													<h1>Today's Deal</h1>
-													<img class="img-fluid"
-														src="https://placehold.co/600x400/000000/FFFFFF.png"
-														alt="">
-												</div>
-												<!--enditem-->
-											</div>
-											<!--endcol-->
-											<div class="col-sm-6">
-												<!--endtop-->
-												<div class="details">
-													<h2 class="cr3">cheeze pizza</h2>
-													<p class="cr4">
-														margarita,<br> ketchup, maionese.
-													</p>
-													<div class="rating">
-														<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-															class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-															class="fa fa-star"></i>
-													</div>
-													<!--endrating-->
-													<p class="cr1">$ 3.55-$ 5.55</p>
-													<a href="/user/products" class="btn btn-food">Buy Now</a>
-												</div>
-												<!--enddetails-->
-											</div>
-											<!--endcol-->
-										</div>
-										<!--endrow-->
-									</div>
-									<!--endcontainer-->
-								</div>
-
-								<!--endcarousel-item-->
-								<div class="carousel-item">
-									<div class="container text-center">
-										<div class="row">
-											<div class="col-sm-6 image">
-												<div class="item">
-													<h1></h1>
-													<img class="img-fluid"
-														src="https://placehold.co/600x400/000000/FFFFFF.png"
-														alt="">
-												</div>
-												<!--enditem-->
-											</div>
-											<!--endcol-->
-											<div class="col-sm-6">
-												<!--endtop-->
-												<div class="details">
-													<h2 class="cr3">fruits</h2>
-													<p class="cr4">
-														margarita,<br> ketchup, maionese.
-													</p>
-													<div class="rating">
-														<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-															class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-															class="fa fa-star"></i>
-													</div>
-													<!--endrating-->
-													<p class="cr1">$ 3.55-$ 5.55</p>
-													<a href="/user/products" class="btn btn-food">Buy Now</a>
-												</div>
-												<!--enddetails-->
-											</div>
-											<!--endcol-->
-										</div>
-										<!--endrow-->
-									</div>
-									<!--endcontainer-->
-								</div>
-								<!--endcarousel-item-->
-								<a class="carousel-control-prev" href="#sliderproduct"
-									role="button" data-slide="prev"> <span
-									class="carousel-control-prev-icon" aria-hidden="true"></span>
-								</a> <a class="carousel-control-next" href="#sliderproduct"
-									role="button" data-slide="next"> <span
-									class="carousel-control-next-icon" aria-hidden="true"></span>
-								</a>
-							</div>
-							<!--endslidesliderproduct-->
-						</div>
-						<!--endrow-->
-					</div>
-					<!--endcontainer-->
-				</div>
-				<!--endbg-product-->
-			</div>
-			<!-- CAROUSEL -->
 
 			<div class="row m-3 justify-content-center">
 				<div class="col-md-6">
