@@ -1,14 +1,15 @@
 package com.comp5541.ConcordiaEats.service;
-import com.comp5541.ConcordiaEats.model.Product;
-import com.comp5541.ConcordiaEats.repository.ProductRepository;
-import com.comp5541.ConcordiaEats.model.Favorite;
-import com.comp5541.ConcordiaEats.repository.FavoriteRepository;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import com.comp5541.ConcordiaEats.model.Favorite;
+import com.comp5541.ConcordiaEats.model.Product;
+import com.comp5541.ConcordiaEats.repository.FavoriteRepository;
+import com.comp5541.ConcordiaEats.repository.ProductRepository;
 
 @Service
 @Transactional
