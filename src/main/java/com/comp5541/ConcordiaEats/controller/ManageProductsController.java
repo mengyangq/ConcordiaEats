@@ -1,20 +1,19 @@
 package com.comp5541.ConcordiaEats.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.comp5541.ConcordiaEats.model.Product;
 import com.comp5541.ConcordiaEats.service.ProductService;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Controller
 @SessionAttributes("username")
@@ -31,7 +30,7 @@ public class ManageProductsController {
 
 	@PostMapping("/admin/updateProducts")
 	public String updateProducts(@Param("id")Integer id,
-			@Param("name") String name,
+			@Param("newname") String name,
     		@Param("categoryid")Integer categoryid, 
     		@Param("quantity")Integer quantity, 
     		@Param("price")Double price, 
@@ -54,19 +53,22 @@ public class ManageProductsController {
 		
 		model.addAttribute("categoryNames", categoryNames);
 		
+			
 		try {
 			productService.updateProduct(id, name, categoryid, quantity, 
-	        		price, weight, description, image);
+			    		price, weight, description, image);
+			
 			model.addAttribute("message", "Woo-Hoo: Product has been successfully updated!");
 			
-			List<Product> products = productService.searchProducts();
-			model.addAttribute("products", products);
-			
-			return "adminProducts";
 		} catch (Exception ex) {
+			
 			model.addAttribute("errorMessage", "Error: product with same name already exists!");
-			return "adminUpdateProducts";
 		}
+		
+		List<Product> products = productService.searchProducts();
+		model.addAttribute("products", products);
+		
+		return "adminProducts";
 	}
 	
 	@PostMapping("/admin/insertProducts")

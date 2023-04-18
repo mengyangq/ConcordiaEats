@@ -34,6 +34,9 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Query("SELECT p FROM Product p where id = :id")
     Product searchProducts(@Param("id")Integer id);
     
+    /*@Query("SELECT COUNT(*) FROM Product p where id != :id AND name = :name")
+    Integer searchDuplicate(@Param("id")Integer id, @Param("name")String name);*/
+    
     @Modifying
     @Query("DELETE FROM Product WHERE id = :id")
     void deleteProduct(@Param("id")Integer id);
@@ -52,7 +55,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     
     @Modifying
     @Query("UPDATE Product SET name = :name, categoryid = :categoryid, quantity = :quantity, "
-    		+ "price = :price, weight = :weight, description = description, image = :image WHERE id = :id")
+    		+ "price = :price, weight = :weight, description = :description, image = :image WHERE id = :id")
     void updateProduct(@Param("id")Integer id,
     		@Param("name") String name,
     		@Param("categoryid")Integer categoryid, 

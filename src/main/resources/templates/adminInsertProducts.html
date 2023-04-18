@@ -69,7 +69,7 @@
 					<div class="form-group">
 						<label for="name">Name</label>
 						<input type="text" class="form-control border border-warning" required name="name"
-								placeholder="Enter name">
+								placeholder="Product Name">
 					</div>
 					<div class="form-group">
 						<label for="categoryid">Select Category</label>
@@ -82,7 +82,7 @@
 					<div class="form-group">
 							<label for="price">Price</label>
 							<input type="number" class="form-control border border-warning" required name="price"
-								step="0.01" min="1.00"  placeholder="Price">
+								step="0.01" min="1.00" placeholder="Price">
 					</div>
 					<div class="form-group">
 						<label for="weight">Weight in ml/gram</label>
@@ -102,10 +102,9 @@
 						<textarea class="form-control border border-warning" rows="4" required name="description"
 							placeholder="Product Details"></textarea>
 					</div>
-					<p>Product Image</p>
 					<div class="form-group">
 						<label for="image">Input Image URL</label>
-						<input type="text" name="image" id="image"/>
+						<input type="text" name="image" id="image" placeholder="Put your image url here." style="width: 100%;">
 					</div>
 					<input type="submit" value="Apply" class="btn btn-info mt-3">
 					<a href="/admin/products" class="btn btn-info mt-3">Close</a>

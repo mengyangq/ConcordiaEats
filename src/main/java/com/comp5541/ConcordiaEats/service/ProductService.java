@@ -1,14 +1,16 @@
 package com.comp5541.ConcordiaEats.service;
-import com.comp5541.ConcordiaEats.model.Product;
-import com.comp5541.ConcordiaEats.repository.ProductRepository;
-import com.comp5541.ConcordiaEats.model.Favorite;
-import com.comp5541.ConcordiaEats.repository.FavoriteRepository;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import com.comp5541.ConcordiaEats.model.Favorite;
+import com.comp5541.ConcordiaEats.model.Product;
+import com.comp5541.ConcordiaEats.repository.FavoriteRepository;
+import com.comp5541.ConcordiaEats.repository.ProductRepository;
 
 @Service
 @Transactional
@@ -37,6 +39,9 @@ public class ProductService {
     	return productRepository.searchProducts(id);
     }
     
+    /*public Integer searchDuplicate(Integer id, String name) {
+    	return productRepository.searchDuplicate(id, name);
+    };*/
 
     public void addProductToFavorites(Integer userId, Integer productId) {
         // Create a new Favorite instance
