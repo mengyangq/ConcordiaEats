@@ -68,39 +68,81 @@ Quality control efforts include restructuring the base code to adhere to the MVC
 - Thymeleaf
 - JUnit
 
+## How to run 
+
+- Pre requirement: Spring boot Installed in Eclipse IDE (Enterprise for web development), mysql Database (online or local)
+
+(1)
+```
+Download and import project in Eclipse IDE
+```
+
+(2)
+```
+Make database name: springproject (or other name you like) 
+```
+
+(3)
+```
+Import springproject.sql file in database to create all tables (e.g., using MySQL Workbench)
+```
+
+(4)
+```
+Change the path to your database in application.properties (in src/main/resources)
+```
+
+(5)
+```
+Right click project and run as Spring Boot App & open:- http://localhost:8080/
+```
+
+## Login Example
+
+### Customer login
+
+- username: jay
+- password: 123
+
+### Admin login
+
+- username: admin
+- password: 123
+
 ## Screenshots of the Customer-side Interface
 
 ### Login (same for admin)
 
-![](https://i.postimg.cc/8zSqhLg2/1-login.png)
+<img width="1728" alt="1_login" src="https://user-images.githubusercontent.com/42892401/232938372-6911c66c-a76d-4892-af0f-33e6d8d35783.png">
+
 
 ### Customer Main
 
-![](https://i.postimg.cc/Zq0j3q0k/2-customer-Main.png)
+<img width="1728" alt="2_customerMain" src="https://user-images.githubusercontent.com/42892401/232938420-92c932d4-1e04-4c88-83be-ca1cb39b5a67.png">
 
 ### Search
 
-![](https://i.postimg.cc/J4wgLj0s/3-search.png)
+<img width="1728" alt="3_search" src="https://user-images.githubusercontent.com/42892401/232938464-f7f1c931-2938-491b-b987-f1f5c6bd136d.png">
 
 ### Cart
 
-![](https://i.postimg.cc/nrmPmhRV/4-cart.png)
+<img width="1728" alt="4_cart" src="https://user-images.githubusercontent.com/42892401/232938488-2ba9c753-9e7b-4abf-91e2-7faad9c30b8a.png">
 
 ## Screenshots of the Admin-side Interface
 
 ### Admin Main
 
-![](https://i.postimg.cc/ncvWcM90/5-admin-Main.png)
+<img width="1728" alt="5_adminMain" src="https://user-images.githubusercontent.com/42892401/232938513-44f1babf-8227-441c-a257-ba348ef23631.png">
 
 ### Product Update
 
-![](https://i.postimg.cc/y635tL1q/6-product.png)
+<img width="1728" alt="6_product" src="https://user-images.githubusercontent.com/42892401/232938532-d080d76f-7a6a-45b4-9c1d-551ae3edbbc2.png">
 
 ### Discount
 
-![](https://i.postimg.cc/c4YpgX27/7-discount.png)
+<img width="1728" alt="7_discount" src="https://user-images.githubusercontent.com/42892401/232938552-a8688014-8ed9-4f4f-8940-b0e0505e5020.png">
 
 ### Most/least Selling
 
-![](https://i.postimg.cc/pLJ3ky2p/8-selling.png)
+<img width="1728" alt="8_selling" src="https://user-images.githubusercontent.com/42892401/232938570-12d1f2f2-c1d1-4e8c-a56b-727ff1880e17.png">
 
