@@ -149,9 +149,9 @@ Right click project and run as Spring Boot App & open:- http://localhost:8080/
 
 ## Our Amazing Team:
 
-[@QuoiHang](https://github.com/QuoiHang)
-[@Yunqing-Chen](https://github.com/Yunqing-Chen)
-[@xianzhigege](https://github.com/xianzhigege)
-[@SpankeyDaMankey](https://github.com/SpankeyDaMankey)
-[@MUSAIMAN](https://github.com/MUSAIMAN)
-[@zuwara](https://github.com/zuwara)
+- [@QuoiHang](https://github.com/QuoiHang)
+- [@Yunqing-Chen](https://github.com/Yunqing-Chen)
+- [@xianzhigege](https://github.com/xianzhigege)
+- [@SpankeyDaMankey](https://github.com/SpankeyDaMankey)
+- [@MUSAIMAN](https://github.com/MUSAIMAN)
+- [@zuwara](https://github.com/zuwara)
