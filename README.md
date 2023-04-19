@@ -109,12 +109,21 @@ Right click project and run as Spring Boot App & open:- http://localhost:8080/
 - username: admin
 - password: 123
 
+## Our Amazing Team:
+
+- [@QuoiHang](https://github.com/QuoiHang)
+- [@Yunqing-Chen](https://github.com/Yunqing-Chen)
+- [@xianzhigege](https://github.com/xianzhigege)
+- [@SpankeyDaMankey](https://github.com/SpankeyDaMankey)
+- [@MUSAIMAN](https://github.com/MUSAIMAN)
+- [@zuwara](https://github.com/zuwara)
+
+
 ## Screenshots of the Customer-side Interface
 
 ### Login (same for admin)
 
 <img width="1728" alt="1_login" src="https://user-images.githubusercontent.com/42892401/232938372-6911c66c-a76d-4892-af0f-33e6d8d35783.png">
-
 
 ### Customer Main
 
@@ -145,13 +154,3 @@ Right click project and run as Spring Boot App & open:- http://localhost:8080/
 ### Most/least Selling
 
 <img width="1728" alt="8_selling" src="https://user-images.githubusercontent.com/42892401/232938570-12d1f2f2-c1d1-4e8c-a56b-727ff1880e17.png">
-
-
-## Our Amazing Team:
-
-- [@QuoiHang](https://github.com/QuoiHang)
-- [@Yunqing-Chen](https://github.com/Yunqing-Chen)
-- [@xianzhigege](https://github.com/xianzhigege)
-- [@SpankeyDaMankey](https://github.com/SpankeyDaMankey)
-- [@MUSAIMAN](https://github.com/MUSAIMAN)
-- [@zuwara](https://github.com/zuwara)
